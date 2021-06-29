@@ -1,8 +1,11 @@
 // Retorna la url del servicio. Es una función de configuración.
-function BBServiceURL() {
-  return "ws://localhost:8080/bbService";
-}
-class WSBBChannel {
+function WBServiceURL() {
+  var host = window.location.host;
+  var url = 'wss://' + (host) + '/bbService';
+  console.log("URL Calculada: " + url);
+  return url;
+ }
+class WSWBChannel {
   constructor(URL, callback) {
     this.URL = URL;
     this.wsocket = new WebSocket(URL);
@@ -36,9 +39,9 @@ class WSBBChannel {
 class WBCanvas extends React.Component {
   constructor(props) {
     super(props);
-    this.comunicationWS = this.comunicationWS = new WSBBChannel(
-      BBServiceURL(),
-      new WSBBChannel(BBServiceURL(), (msg) => {
+    this.comunicationWS = this.comunicationWS = new WSWBChannel(
+      WBServiceURL(),
+      new WSWBChannel(WBServiceURL(), (msg) => {
         (msg) => {
           var obj = JSON.parse(msg);
           console.log("On func call back ", msg);
