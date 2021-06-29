@@ -39,16 +39,13 @@ class WSWBChannel {
 class WBCanvas extends React.Component {
   constructor(props) {
     super(props);
-    this.comunicationWS = this.comunicationWS = new WSWBChannel(
-      WBServiceURL(),
-      new WSWBChannel(WBServiceURL(), (msg) => {
+    this.comunicationWS = new WSWBChannel(WBServiceURL(),
         (msg) => {
           var obj = JSON.parse(msg);
           console.log("On func call back ", msg);
           this.drawPoint(obj.x, obj.y);
-        };
-      })
-    );
+        }
+      );
     this.myp5 = null;
     this.state = { loadingState: "Loading Canvas ..." };
     let wsreference = this.comunicationWS;
