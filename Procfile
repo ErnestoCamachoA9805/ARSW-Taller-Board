@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* edu.escuelaing.interactiveBoard.InteractiveboardApplication
+web: java -Dserver.port=$PORT -cp target/classes:target/dependency/* edu.escuelaing.interactiveBoard.InteractiveboardApplication
